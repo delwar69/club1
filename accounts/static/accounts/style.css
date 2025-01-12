@@ -1,0 +1,126 @@
+/* General Body Styling */
+body {
+    background: linear-gradient(to bottom, #f0f8ff, #e0f7fa); /* Light blue gradient */
+    color: #333;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh; /* Ensure body spans full height of viewport */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Styling */
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 10px;
+}
+
+/* Form Styling */
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+    display: block;
+}
+
+form .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+form .form-group label {
+    width: 30%; /* Adjust the width of the label */
+    text-align: right;
+    margin-right: 10px;
+}
+
+form .form-group input {
+    width: 78%; /* Increased input field width by 8% */
+    padding: 5px 10px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+button, .btn {
+    transition: all 0.3s;
+    width: 100%; /* Make buttons full width for consistency */
+}
+
+button:hover, .btn:hover {
+    background-color: #007bff !important;
+    transform: scale(1.05);
+}
+
+form input, form button {
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+}
+
+form input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+button, .btn {
+    transition: all 0.3s;
+}
+
+table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+label {
+    font-weight: bold;
+}
+
+input {
+    width: 78%; /* Increased input field width by 8% */
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Alerts */
+.alert {
+    border-radius: 5px;
+}
+
+/* Footer Styling */
+footer {
+    background: linear-gradient(to right, #4caf50, #00bcd4);
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 10px 0;
+    text-align: center;
+    margin-top: auto; /* Push footer to the bottom */
+}
+
+/* Wrapper Styling */
+.wrapper {
+    flex: 1; /* Makes the content fill remaining space */
+}

@@ -1,0 +1,12 @@
+<!-- accounts/templates/accounts/email_verification.html -->
+Hi {{ user.first_name }},
+
+Thank you for registering with us!
+
+Click the link below to verify your email address and activate your account:
+
+<a href="http://{{ domain }}{% url 'activate' uid=uid token=token %}">
+  Activate My Account
+</a>
+
+If you didn’t sign up for this account, please ignore this email or contact us at support/Focal Person.

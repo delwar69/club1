@@ -1,0 +1,13 @@
+<!-- accounts/templates/accounts/activation_failed.html -->
+{% extends "accounts/base.html" %}
+
+{% block content %}
+<div class="activation-failed-container">
+  <h2>Activation Failed</h2>
+  <p>The activation link is invalid or expired.</p>
+  <p>
+    If you believe this is a mistake, please <a href="{% url 'support' %}" class="btn-link">contact support</a>.
+  </p>
+  <p>Need a new activation link? <a href="{% url 'resend_activation_email' %}">Click here</a>.</p>
+</div>
+{% endblock %}

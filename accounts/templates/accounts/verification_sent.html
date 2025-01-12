@@ -1,0 +1,8 @@
+<!-- accounts/templates/accounts/verification_sent.html -->
+{% extends "accounts/base.html" %}
+
+{% block content %}
+  <h2>Verification Email Sent</h2>
+  <p>An email verification link has been sent to your registered email address. Please check your inbox and click the link to verify your email.</p>
+  <p>If you did not receive the email, please check your spam/junk folder or <a href="{% url 'resend_verification_email' %}">click here to resend</a>.</p>
+{% endblock %}

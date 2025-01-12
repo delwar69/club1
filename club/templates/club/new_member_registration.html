@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Member Registration</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .form-container {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .club-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .club-title {
+            text-align: center;
+        }
+
+        /* Optional: Style for checkbox to make it look more consistent */
+        input[type="checkbox"] {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+        /* end checkbox */
+
+        .bangla-text {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .english-text {
+            font-size: 16px;
+            color: #555;
+            margin: 0;
+        }
+
+        .membership-form-header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td {
+            padding: 10px;
+            vertical-align: top;
+        }
+
+        table td:first-child {
+            text-align: right;
+            font-weight: bold;
+            width: 30%;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="file"],
+        select,
+        textarea {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .submit-btn {
+            text-align: center;
+            padding: 20px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        span.required-field {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="logo-container">
+            <img src="{% static 'images/btvclub_logo.png' %}" alt="BTV Club Logo" class="club-logo">
+            <div class="club-title">
+                <h2 class="bangla-text">বাংলাদেশ টেলিভিশন অফিসার্স ক্লাব</h2>
+                <h2 class="english-text">Bangladesh Television Officers' Club</h2>
+            </div>
+        </div>
+
+        <h3 class="membership-form-header">MEMBERSHIP FORM</h3>
+        
+        <form method="post" enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <table>
+                {% for field in form.visible_fields %}
+                <tr>
+                    <td>
+                        {{ field.label_tag }}
+                        {% if field.field.required %}
+                            <span class="required-field">*</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="error-message">
+                                {{ field.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                                
+            </table>
+
+            <div class="submit-btn">
+                <input type="submit" value="Register">
+            </div>
+        </form>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger mt-3">
+                {{ form.non_field_errors|join:" " }}
+            </div>
+        {% endif %}
+    </div>
+      
+</body>
+</html>
