@@ -7,18 +7,30 @@
             <h4>Login</h4>
         </div>
         <div class="card-body">
+            <!-- Login Form -->
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
 
+                <!-- Display error or success messages -->
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="alert alert-danger mt-2">{{ message }}</div>
+                        <div class="alert 
+                            {% if message.tags %}
+                                alert-{{ message.tags }}
+                            {% else %}
+                                alert-info
+                            {% endif %} mt-2">
+                            {{ message }}
+                        </div>
                     {% endfor %}
                 {% endif %}
                 
+                <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
+
+            <!-- Registration Link -->
             <div class="mt-3 text-center">
                 <p>Don't have an account?</p>
                 <a href="{% url 'register' %}" class="btn btn-link">Register</a>

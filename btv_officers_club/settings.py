@@ -26,9 +26,7 @@ SECRET_KEY = 'django-insecure-zk%279_yud(zm2ux^_6z2+8(k%y^q@jg+eyaba3mn)^%*kun%6
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -74,10 +72,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'btv_officers_club.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 #sqlite3 connection settings
 
 DATABASES = {
@@ -86,7 +82,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 """ 
 #mysql database connection 
@@ -101,7 +96,6 @@ DATABASES = {
     }
 }
 """
-
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -142,7 +136,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #account login url, build in 
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/dashboard/'  # Adjust to your desired path
+#LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/accounts/profile/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 # Email configuration
@@ -154,8 +150,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'doictsadarbrahmanbaria@gmail.com'
 EMAIL_HOST_PASSWORD = 'zmyfcgdxaqnuwlkl'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 #custom user add email settings
+
+# Authentication backend settings for customized authentication
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 # message tage settings here
@@ -165,7 +165,19 @@ MESSAGE_TAGS = {
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
 
 

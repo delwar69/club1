@@ -21,18 +21,40 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
-                        
-                        {% if user.is_authenticated %}
-                            <!-- Display 'Welcome' message and Logout link for authenticated users -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}">Home</a>
+                        </li>
+
+                        {% if request.resolver_match.url_name == "register" %}
+                            <!-- Show Login menu in Register page -->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Welcome, {{ user.first_name }}!</a>
+                                <a class="nav-link" href="{% url 'login' %}">Login</a>
                             </li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                         {% else %}
-                            <!-- Display Login link for unauthenticated users -->
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                            {% if user.is_authenticated %}
+                                <!-- Dropdown Menu for Authenticated Users -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {% if user.profile.profile_picture %}
+                                            <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture" width="30" height="30" class="rounded-circle">
+                                        {% else %}
+                                            <span>{{ user.first_name }}</span>
+                                        {% endif %}
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{% url 'user_profile' %}">My Profile</a>
+                                        <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <!-- Show Login and Register for unauthenticated users -->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                </li>
+                            {% endif %}
                         {% endif %}
                     </ul>
                 </div>

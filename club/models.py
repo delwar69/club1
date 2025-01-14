@@ -1,9 +1,16 @@
 from django.db import models
+from django.core.exceptions import ValidationError
+
+# Custom validator for file size
+def validate_pdf_size(value):
+    if value.size > 5 * 1024 * 1024:  # 5 MB limit
+        raise ValidationError("The PDF file size must not exceed 5 MB.")
 
 # Notice model for storing club notices
 class Notice(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True)
+    pdf_file = models.FileField(upload_to='notices/', blank=True, null=True, validators=[validate_pdf_size])
     date = models.DateField(auto_now_add=True)
 
     def __str__(self):

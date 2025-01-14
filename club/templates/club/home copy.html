@@ -16,22 +16,20 @@
 <div id="notices" class="my-5">
     <h2>Notice Board</h2>
     <ul>
-        {% for notice in recent_notices %}
+        {% for notice in notices %}
             <li>
+                <strong>{{ notice.title }}</strong> - {{ notice.date }}
                 {% if notice.pdf_file %}
-                    <a href="{{ notice.pdf_file.url }}" target="_blank">{{ notice.title }}</a> 
-                {% else %}
-                    {{ notice.title }} (No File Attached)
+                    - <a href="{{ notice.pdf_file.url }}" target="_blank">View PDF</a>
                 {% endif %}
-                - {{ notice.date }}
+                {% if notice.description %}
+                    <p>{{ notice.description }}</p>
+                {% endif %}
             </li>
         {% empty %}
             <li>No notices available at the moment.</li>
         {% endfor %}
     </ul>
-    
-    <!-- Link to Archived Notices -->
-    <a href="{% url 'archived_notices' %}" class="btn btn-secondary mt-3">View Archived Notices</a>
 </div>
 
 <!-- Committee Members -->

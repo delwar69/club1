@@ -12,11 +12,9 @@ urlpatterns = [
     path('former_secretary/', views.former_secretary, name='former_secretary'),  # Former secretaries
     path('adhoc_committee/', views.adhoc_committee, name='adhoc_committee'),  # Ad-hoc committee details
     path('all_members/', views.all_members, name='all_members'),  # List of all members
-
     # Service & Facilities Section
     path('celebration/', views.celebration, name='celebration'),  # Celebrations information
     path('congratulations/', views.congratulations, name='congratulations'),  # Achievements/congratulations
-
     # Sports & Fitness Section
     path('badminton/', views.badminton, name='badminton'),  # Badminton details
     path('gym/', views.gym, name='gym'),  # Gym details
@@ -29,7 +27,8 @@ urlpatterns = [
 
     # New Member Registration Section
     path('new_member_registration/', views.new_member_registration, name='new_member_registration'),  # Form for new registrations
-
+    #archives section notifications
+    path('archived-notices/', views.archived_notices, name='archived_notices'),
     # Home View
     path('', views.home, name='home'),  # Home page
 ]

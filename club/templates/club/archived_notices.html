@@ -1,0 +1,24 @@
+{% extends "club/base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <h2>Archived Notices</h2>
+    
+    <ul>
+        {% for notice in archived_notices %}
+            <li>
+                {% if notice.pdf_file %}
+                    <a href="{{ notice.pdf_file.url }}" target="_blank">{{ notice.title }}</a>
+                {% else %}
+                    {{ notice.title }} (No File Attached)
+                {% endif %}
+                - {{ notice.date }}
+            </li>
+        {% empty %}
+            <li>No archived notices available.</li>
+        {% endfor %}
+    </ul>
+    
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}

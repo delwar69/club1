@@ -21,27 +21,12 @@ from django.utils.timezone import now
 from reportlab.pdfbase.pdfmetrics import registerFont
 from reportlab.platypus import Image
 from reportlab.lib.pagesizes import A4
-# home page view code is here
-def home(request):    
-    recent_notices = Notice.objects.all().order_by('-date')[:6] # Fetch 6 most recent notices        
-    archived_notices = Notice.objects.all().order_by('-date')[6:] # Fetch older notices for the archive        
-    members = Member.objects.all() # Fetch all members for the committee members section        
-    gallery = GalleryImage.objects.all() # Fetch all images for the gallery section    
-    # Render the home page with the context data
-    return render(request, 'club/home.html', {
-        'recent_notices': recent_notices,
-        'members': members,
-        'gallery': gallery,
-    })
 
-def archived_notices(request):
-    # Fetch all archived notices (those after the first 6 most recent)
-    archived_notices = Notice.objects.all().order_by('-date')[6:]
-    
-    # Render the archived notices page
-    return render(request, 'club/archived_notices.html', {
-        'archived_notices': archived_notices,
-    })
+def home(request):
+    notices = Notice.objects.all()
+    members = Member.objects.all()
+    gallery = GalleryImage.objects.all()
+    return render(request, 'club/home.html', {'notices': notices, 'members': members, 'gallery': gallery})
 
 # About Us Section Views
 def about_club(request):
